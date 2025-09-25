@@ -5,15 +5,16 @@ namespace SnakeMang
 {
     class ScoreSaver
     {
-        public void SaveScore(int score, string filename)
+        public void SaveScore(string nimi, int score, string filename)
         {
             try
             {
-                File.WriteAllText(filename, score.ToString());
+                string sisu = $"{nimi}: {score}";
+                File.AppendAllText(filename, sisu + Environment.NewLine);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while saving the score: {ex.Message}");
+                Console.WriteLine($"Viga: {ex.Message}");
             }
         }
     }

@@ -20,7 +20,7 @@ namespace SnakeMang
 
         public override void Draw()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Red;
 
             foreach (Point p in pList)
             {

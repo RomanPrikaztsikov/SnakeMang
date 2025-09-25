@@ -57,13 +57,13 @@ namespace SnakeMang
             GameOverScreen gameOver = new GameOverScreen();
             gameOver.Show(snake.score.CurrentScore);
 
-            ScoreSaver saver = new ScoreSaver();
-            saver.SaveScore(snake.score.CurrentScore, "score.txt");
-        }
+            Console.WriteLine(); 
+            Console.Write("Sisesta oma nimi: ");
+            string nimi = Console.ReadLine();
 
-        static void Draw(Figure figure)
-        {
-            figure.Draw();
+            string failitee = "C:\\Users\\opilane\\source\\repos\\TARpv24 Prikaztsikov\\SnakeMang\\score.txt";
+            ScoreSaver saver = new ScoreSaver();
+            saver.SaveScore(nimi, snake.score.CurrentScore, failitee);
         }
     }
 }
