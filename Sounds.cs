@@ -18,7 +18,7 @@ namespace SnakeMang
             try
             {
                 var waveOut = new WaveOutEvent();
-                var audioFile = new AudioFileReader(Path.Combine(pathToMedia, songName + ".mp3"));
+                var audioFile = new AudioFileReader(Path.Combine(pathToMedia, "music.mp3"));
                 waveOut.Init(audioFile);
                 waveOut.Play();
             }
