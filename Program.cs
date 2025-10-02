@@ -16,9 +16,11 @@ namespace SnakeMang
             Walls walls = new Walls(80, 25);
             walls.Draw();
 
+            //Mängu lõpetav plokk
             StaticObstacle obstacle = new StaticObstacle(15, 10, 'X');
             obstacle.Draw();
 
+            //valitakse juhuslikult üks sümbol kahest
             Random random = new Random();
             char[] possibleChars = { '¤', 'S' };
             char selectedChar = possibleChars[random.Next(0, 2)];
@@ -32,15 +34,16 @@ namespace SnakeMang
 
             snake.score.Draw();
 
+            //kasutame random powerUP ilmumiseks, kui tihti see ilmub ja millises positsioonis
             PowerUp powerUp = null;
             Random rand = new Random();
             bool isSpeedBoosted = false;
-            int speed = 100;
-            int powerUpTimer = 0;
+            int speed = 100; //100 millisekundit viivitus, mäng töötab kiirusega 10 kaadrit sekundis.
+            int powerUpTimer = 0; //taimer, määrame powerUP kestamine
 
             while (true)
             {
-                if (walls.IsHit(snake) || snake.IsHitTail() || obstacle.IsHit(snake.GetNextPoint()))
+                if (walls.IsHit(snake) || snake.IsHitTail() || obstacle.IsHit(snake.GetNextPoint())) //mäng lõppes kui kasutaja sõidab seinasse või Obstacle
                 {
                     break;
                 }
@@ -55,7 +58,7 @@ namespace SnakeMang
                     snake.Move();
                 }
 
-                if (powerUp == null && rand.Next(100) == 0)
+                if (powerUp == null && rand.Next(100) == 0) //arvutab numbri, kui tulemus on 0 ilmub powerUP
                 {
                     int x = rand.Next(1, 78);
                     int y = rand.Next(1, 23);
@@ -66,7 +69,7 @@ namespace SnakeMang
                 if (powerUp != null && snake.GetNextPoint().IsHit(powerUp))
                 {
                     isSpeedBoosted = true;
-                    speed = 50;
+                    speed = 50; //viivitus muutub 50, madu liigub kaks korda kiiremini, sest mäng liigub 20 k/s
                     powerUp = null;
                     powerUpTimer = 0;
                 }
@@ -75,7 +78,7 @@ namespace SnakeMang
                 {
                     powerUpTimer++;
 
-                    if (powerUpTimer >= 50)
+                    if (powerUpTimer >= 100) //kui möödub 100 kaadrit (5 sekundit), PowerUP kaob ja kiirus taastub 100
                     {
                         isSpeedBoosted = false;
                         speed = 100;
@@ -91,14 +94,14 @@ namespace SnakeMang
                 }
             }
 
-            GameOverScreen gameOver = new GameOverScreen();
+            GameOverScreen gameOver = new GameOverScreen(); //mäng lõppes
             gameOver.Show(snake.score.CurrentScore);
 
             Console.WriteLine();
-            Console.Write("Sisesta oma nimi: ");
+            Console.Write("Sisesta oma nimi: "); //kasutaja sisestab oma nimi
             string nimi = Console.ReadLine();
 
-            string failitee = "C:\\Users\\opilane\\source\\repos\\TARpv24 Prikaztsikov\\SnakeMang\\score.txt";
+            string failitee = "C:\\Users\\opilane\\source\\repos\\TARpv24 Prikaztsikov\\SnakeMang\\score.txt"; //salveta skoor
             ScoreSaver saver = new ScoreSaver();
             saver.SaveScore(nimi, snake.score.CurrentScore, failitee);
         }

@@ -9,7 +9,7 @@ namespace SnakeMang
 {
     class StaticObstacle : Point
     {
-        public StaticObstacle(int x, int y, char symbol) : base(x, y, symbol) { }
+        public StaticObstacle(int x, int y, char symbol) : base(x, y, symbol){} //pärida base
 
         public void Draw()
         {

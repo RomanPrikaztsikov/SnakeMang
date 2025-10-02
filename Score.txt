@@ -1,3 +1,6 @@
 Roman: 0
 Artjom: 7
 test: 7
+aaa: 0
+q: 0
+AAAAAA: 16

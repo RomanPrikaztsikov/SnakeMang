@@ -12,7 +12,7 @@ namespace SnakeMang
         {
             Console.Clear();
             Console.SetCursorPosition(30, 10);
-            Console.WriteLine("GAME OVER");
+            Console.WriteLine("MANG ON LOPPENUD");
             Console.SetCursorPosition(28, 12);
             Console.WriteLine($"Teie Tulemus: {finalScore}");
             Console.SetCursorPosition(25, 14);
